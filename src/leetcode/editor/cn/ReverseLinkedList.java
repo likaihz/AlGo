@@ -30,6 +30,12 @@ public class ReverseLinkedList{
  */
 class Solution {
     ListNode newHead = null;
+
+    /**
+     * 递归实现：时间O(n), 空间O(n)
+     * @param head
+     * @return
+     */
     public ListNode reverseList(ListNode head) {
         if(head == null) return null;
         recr(head);
@@ -47,6 +53,23 @@ class Solution {
         }
 
         return node;
+    }
+
+    /**
+     * 非递归实现：时间O(n), 空间O(1)
+     *
+     * @param head
+     * @return
+     */
+    public ListNode reverseList2(ListNode head) {
+        ListNode pre = null, crt = head, next;
+        while (crt != null) {
+            next = crt.next;
+            crt.next = pre;
+            pre = crt;
+            crt = next;
+        }
+        return pre;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
